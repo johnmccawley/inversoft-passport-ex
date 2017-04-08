@@ -10,16 +10,14 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, './build', 'index.html'));
 });
 
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-var production = process.env['NODE_ENV'] === 'production';
-let port = configFile.development.httpPort;
-if (production) {
-  port = process.env.VCAP_APP_PORT || process.env.PORT;
-}
-app.listen(port);
+// listen (start app with node server.js) ======================================
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
 
-console.info("Serving static content from ./build on port " + port);
-
+module.exports = app;
 
 
 
