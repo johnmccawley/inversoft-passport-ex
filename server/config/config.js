@@ -2,7 +2,7 @@
 
 const configFile = require ('./config.json');
 
-if (process.env['NODE_ENV'] === 'production') {
+/* if (process.env['NODE_ENV'] === 'production') {
   const services = JSON.parse(process.env.VCAP_SERVICES);
 
   // Look up the service definition.
@@ -26,6 +26,6 @@ if (process.env['NODE_ENV'] === 'production') {
   configFile.production.passport.applicationId = process.env.passport_application_id;
 
   module.exports = configFile.production;
-} else {
+} else { */
   module.exports = configFile.development;
-}
+//}
